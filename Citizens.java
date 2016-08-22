@@ -1,10 +1,12 @@
+import exceprions.ValidationExceptions;
+
 public class Citizens extends Name {
 	private String address;
 
-	public Citizens(String name, String address) {
+	public Citizens(String name, String address) throws ValidationExceptions {
 		super(name);
 		if (checkString(address)) {
-			throw new IllegalArgumentException();
+			throw new ValidationExceptions("Don't lie!The address is not valid!");
 		}
 		this.address = address;
 	}

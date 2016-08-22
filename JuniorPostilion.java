@@ -1,12 +1,14 @@
+import exceprions.ValidationExceptions;
+
 public class JuniorPostilion extends Name {
 
 	private int staj;
 
-	public JuniorPostilion(String name, int staj) {
+	public JuniorPostilion(String name, int staj) throws ValidationExceptions{
 		super(name);
 
 		if (staj <= 0 || staj > 70) {
-			throw new IllegalArgumentException("The staj is not correct");
+			throw new ValidationExceptions("The intership is not correct");
 		}
 		this.staj = staj;
 	}

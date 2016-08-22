@@ -1,6 +1,8 @@
+import exceprions.ValidationExceptions;
+
 public class Postilion extends JuniorPostilion {
 
-	public Postilion(String name, int staj) {
+	public Postilion(String name, int staj) throws ValidationExceptions{
 		super(name, staj);
 	}
 
