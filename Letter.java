@@ -1,4 +1,4 @@
-public class Letter {
+public class Letter implements IPackage {
 	private static float price = 0.5f;
 
 	private TwoPeople connection;
