@@ -35,6 +35,6 @@ public class Collet extends Letter {
 
 	@Override
 	public String toString() {
-		return"Collet: \n"+ super.getConnection() + "Collet has a width:" + this.width + "; length:" + this.lenght + "; hight:" + this.hight;
+		return"Collet: \n"+ super.getConnection() + "The collet has dimentions: width:" + this.width + "; length:" + this.lenght + "; hight:" + this.hight+";";
 	}
 }
