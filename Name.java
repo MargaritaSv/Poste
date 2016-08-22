@@ -12,6 +12,11 @@ public abstract class Name {
 		return word == null || word.trim().length() == 0;
 	}
 
+	
+	protected String getName() {
+		return name;
+	}
+
 	public String toString() {
 		return this.name + " ";
 	}
