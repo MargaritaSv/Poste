@@ -18,24 +18,30 @@ public class Main {
 
 	public static void main(String[] string) {
 
-		// create post state
-		PostState sofia = new PostState("Sofia");
+		try{
+			// create post state
+			PostState sofia = new PostState("Sofia");
 
-		// create citizens
-		List listCitizens = new LinkedList();
-		createCitizens(listCitizens);
+			// create citizens
+			List listCitizens = new LinkedList();
+			createCitizens(listCitizens);
 
-		printPeople(listCitizens);
 
-		// create postilions
-		List<JuniorPostilion> listPostelions = new LinkedList();
-		createPostelions(names, listPostelions);
+			// create postilions
+			List<JuniorPostilion> listPostelions = new LinkedList();
+			createPostelions(names, listPostelions);
 
-		printPeople(listPostelions);
+			printPeople(listPostelions);
 
-		// create packets
-		List<IPackage> listPackages = new ArrayList<IPackage>();
-		createPackeges(listCitizens, listPackages);
+			// create packets
+			List<IPackage> listPackages = new ArrayList<IPackage>();
+			createPackeges(listCitizens, listPackages);
+			
+			printPeople(listPackages);
+			
+		}catch(Exception ex){
+			System.out.println(ex.getMessage());
+		}
 
 	}
 
