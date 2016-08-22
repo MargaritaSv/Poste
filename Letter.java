@@ -17,6 +17,6 @@ public class Letter implements IPackage {
 
 	@Override
 	public String toString() {
-		return "Letter \n"+ this.getConnection() + ". Price:" + price + "$";
+		return "Letter \n"+ this.getConnection() + ". Price:" + price + "$\n";
 	}
 }
