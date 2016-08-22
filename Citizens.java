@@ -1,10 +1,15 @@
+public class Citizens extends Name {
+	private String address;
 
-public class Citizens extends Name{
-
-	
-	public Citizens(String name) {
+	public Citizens(String name, String address) {
 		super(name);
-		// TODO Auto-generated constructor stub
+		if (checkString(address)) {
+			throw new IllegalArgumentException();
+		}
+		this.address = address;
 	}
 
+	public String toString() {
+			return super.toString() + this.address;
+		}
 }
