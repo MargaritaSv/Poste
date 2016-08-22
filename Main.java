@@ -1,10 +1,10 @@
+import exceptions.ValidationExceptions;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Random;
-
-import exceprions.ValidationExceptions;
 
 public class Main {
 	private static final int NUMBER_OF_CITIZENS = 200;
@@ -15,8 +15,8 @@ public class Main {
 	private static final int MAX_MONTH = 12;
 	private static final int MAX_VALUE = 100;
 	private static final int MIN_VALUE = 5;
-	public static final String[] names = new String[] { "Stefan", "Mitko","Nadq", "Pasha", "Ekaterina", "Kircho", "Pesho", "Stefka" };
-	public static final String[] neightborhood = { "Mladost", "Center","Nadejda", "Vladaq", "Dryjba", "Lulin", "Ovcha kupel 2","Ovacha kupel 1" };
+	public static final String[] NAMES = new String[] { "Stefan", "Mitko","Nadq", "Pasha", "Ekaterina", "Kircho", "Pesho", "Stefka" };
+	public static final String[] NEIGHBORHOOD = { "Mladost", "Center","Nadejda", "Vladaq", "Dryjba", "Lulin", "Ovcha kupel 2","Ovacha kupel 1" };
 
 	public static void main(String[] string) {
 
@@ -32,59 +32,54 @@ public class Main {
             print(listCitizens);
             
 			System.out.println("\n --------------- Postilions ---------------\n");
-			List<JuniorPostilion> listPostelions = new LinkedList();
-			createPostelions(listPostelions);
-			print(listPostelions);
+			List<JuniorPostilion> listPostilions = new LinkedList();
+			createPostilions(listPostilions);
+			print(listPostilions);
 
 			// create packets
 			List<IPackage> listPackages = new ArrayList<IPackage>();
-			createPackeges(listCitizens, listPackages);
+			createPackages(listCitizens, listPackages);
 			print(listPackages);
 
 		} catch (Exception ex) {
 			System.err.println(ex.getMessage());
-			return;
 		}
 	}
 
-	private static void createCitizens(List listCitizens) throws ValidationExceptions{
+	private static void createCitizens(List listCitizens) throws ValidationExceptions {
 		Citizens citizens;
 		for (int i = 0; i < NUMBER_OF_CITIZENS; i++) {
-			citizens = new Citizens(
-					names[(int) (Math.random() * names.length)],
-					neightborhood[(int) (Math.random() * neightborhood.length - 1)]);
+			citizens = new Citizens(NAMES[(int) (Math.random() * NAMES.length)],NEIGHBORHOOD[(int) (Math.random() * NEIGHBORHOOD.length)]);
 			listCitizens.add(citizens);
 		}
 	}
 
-	private static void createPostelions(List<JuniorPostilion> listPostelions) throws ValidationExceptions {
-		JuniorPostilion postelion;
+	private static void createPostilions(List<JuniorPostilion> listPostilions) throws ValidationExceptions {
+		JuniorPostilion postilion;
 		for (int i = 0; i < NUMBER_OF_POSTILIONS; i++) {
 			if (Math.random() > 0.5) {
-				postelion = new JuniorPostilion(names[(int) Math.random()* names.length],new Random().nextInt((MAX_MONTH - MIN_MONTH) + 1)+ MIN_MONTH);
+				postilion = new JuniorPostilion(NAMES[new Random().nextInt(NAMES.length-1)],new Random().nextInt((MAX_MONTH - MIN_MONTH) + 1)+ MIN_MONTH);
 			} else {
-				postelion = new Postilion(names[(int) Math.random()	* names.length],new Random().nextInt((MAX_YEARS - MIN_YEARS) + 1)+ MIN_YEARS);
+				postilion = new Postilion(NAMES[new Random().nextInt(NAMES.length-1)],new Random().nextInt((MAX_YEARS - MIN_YEARS) + 1)+ MIN_YEARS);
 			}
 
-			listPostelions.add(postelion);
+			listPostilions.add(postilion);
 		}
 	}
 
-	private static void createPackeges(List listCitizens,List<IPackage> listPackages)throws ValidationExceptions {
+	private static void createPackages(List listCitizens, List<IPackage> listPackages)throws ValidationExceptions {
 		IPackage postPackage;
 		for (int i = 0; i < 80; i++) {
 			if (Math.random() > 0.4) {
-				postPackage = new Letter((Citizens) (listCitizens.get((int) Math.random()* listCitizens.size())),
-						(Citizens) (listCitizens.get((int) Math.random()* listCitizens.size())));
+				postPackage = new Letter((Citizens) ((listCitizens.get(new Random().nextInt(listCitizens.size()+ 1) + 1))),
+						(Citizens) (listCitizens.get(new Random().nextInt(listCitizens.size()+ 1) + 1)));
 			} else {
-				postPackage = new Collet((Citizens) (listCitizens.get((int) Math.random()* listCitizens.size())),
-						(Citizens) (listCitizens.get((int) Math.random()* listCitizens.size())),
-						new Random().nextInt((MAX_VALUE - MIN_VALUE) + 1) // width
-								+ MIN_VALUE,
-						new Random().nextInt((MAX_VALUE - MIN_VALUE) + 1) // length
-								+ MIN_VALUE,
-						new Random().nextInt((MAX_VALUE - MIN_VALUE) + 1) // high
-								+ MIN_VALUE, (i % 2 == 0) ? true : false); // fragile
+				postPackage = new Colet((Citizens) (listCitizens.get((new Random().nextInt(listCitizens.size()+ 1) + 1))),
+						(Citizens) (listCitizens.get(new Random().nextInt((listCitizens.size() -1 ) + 1) + 1)),
+						new Random().nextInt((MAX_VALUE - MIN_VALUE) + 1) + MIN_VALUE,// width
+						new Random().nextInt((MAX_VALUE - MIN_VALUE) + 1) + MIN_VALUE, // length
+						new Random().nextInt((MAX_VALUE - MIN_VALUE) + 1) + MIN_VALUE,// high
+						(i % 2 == 0) ? true : false); // fragile
 			}
 			listPackages.add(postPackage);
 		}
@@ -92,8 +87,8 @@ public class Main {
 
 	private static void print(List people) {
 		for (Iterator it = people.iterator(); it.hasNext();) {
-			Object persen = (Object) it.next();
-			System.out.println(persen);
+			Object person = it.next();
+			System.out.println(person);
 		}
 	}
 }

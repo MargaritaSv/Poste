@@ -1,4 +1,4 @@
-import exceprions.ValidationExceptions;
+import exceptions.ValidationExceptions;
 
 public abstract class Name {
 	private String name;
