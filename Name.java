@@ -1,4 +1,4 @@
-public class Name {
+public abstract class Name {
 	private String name;
 
 	public Name(String name) {
