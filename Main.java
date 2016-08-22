@@ -4,6 +4,13 @@ import java.util.LinkedList;
 import java.util.Random;
 
 public class Main {
+	private static final int NUMBER_OF_CITIZENS = 200;
+	private static final int NUMBER_OF_POSTILIONS = 50;
+	private static final int MIN_YEARS = 1;
+	private static final int MAX_YEARS = 69;
+	private static final int MIN_MONTH = 1;
+	private static final int MAX_MONTH = 12;
+
 	public static void main(String[] string) {
 		final String[] names = new String[] { "Stefan", "Mitko", "Nadq",
 				"Pasha", "Ekaterina", "Kircho", "Pesho", "Stefka" };
@@ -16,7 +23,7 @@ public class Main {
 		// create citizens
 		List listCitizens = new LinkedList();
 		Citizens citizens;
-		for (int i = 0; i < 200; i++) {
+		for (int i = 0; i < NUMBER_OF_CITIZENS; i++) {
 			citizens = new Citizens(
 					names[(int) (Math.random() * names.length)],
 					neightborhood[(int) (Math.random() * neightborhood.length - 1)]);
@@ -28,13 +35,13 @@ public class Main {
 		// create postilions
 		List<JuniorPostilion> listPostelions = new LinkedList();
 		JuniorPostilion postelion;
-		for (int i = 0; i < 50; i++) {
-			if (Math.random() > 0.5) {// .nextInt((max - min) + 1) + min
+		for (int i = 0; i < NUMBER_OF_POSTILIONS; i++) {
+			if (Math.random() > 0.5) {
 				postelion = new JuniorPostilion(names[(int) Math.random()
-						* names.length], new Random().nextInt((12 - 1) + 1) + 1);
+						* names.length], new Random().nextInt((MAX_MONTH - MIN_MONTH) + 1) + MIN_MONTH);
 			} else {
 				postelion = new Postilion(names[(int) Math.random()
-						* names.length], new Random().nextInt((69 - 1) + 1) + 1);
+						* names.length], new Random().nextInt((MAX_YEARS - MIN_YEARS) + 1) + MIN_YEARS);
 			}
 			
 			listPostelions.add(postelion);
