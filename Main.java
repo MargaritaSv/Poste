@@ -13,18 +13,33 @@ public class Main {
 	private static final int MAX_MONTH = 12;
 	private static final int MAX_VALUE = 100;
 	private static final int MIN_VALUE = 1;
+	public static final String[] names = new String[] { "Stefan", "Mitko","Nadq", "Pasha", "Ekaterina", "Kircho", "Pesho", "Stefka" };
+	public static final String[] neightborhood = { "Mladost", "Center","Nadejda", "Vladaq", "Dryjba", "Lulin", "Ovcha kupel 2","Ovacha kupel 1" };
 
 	public static void main(String[] string) {
-		final String[] names = new String[] { "Stefan", "Mitko", "Nadq",
-				"Pasha", "Ekaterina", "Kircho", "Pesho", "Stefka" };
-		final String[] neightborhood = { "Mladost", "Center", "Nadejda",
-				"Vladaq", "Dryjba", "Lulin", "Ovcha kupel 2", "Ovacha kupel 1" };
 
 		// create post state
 		PostState sofia = new PostState("Sofia");
 
 		// create citizens
 		List listCitizens = new LinkedList();
+		createCitizens(listCitizens);
+
+		printPeople(listCitizens);
+
+		// create postilions
+		List<JuniorPostilion> listPostelions = new LinkedList();
+		createPostelions(names, listPostelions);
+
+		printPeople(listPostelions);
+
+		// create packets
+		List<IPackage> listPackages = new ArrayList<IPackage>();
+		createPackeges(listCitizens, listPackages);
+
+	}
+
+	private static void createCitizens(List listCitizens) {
 		Citizens citizens;
 		for (int i = 0; i < NUMBER_OF_CITIZENS; i++) {
 			citizens = new Citizens(
@@ -32,11 +47,10 @@ public class Main {
 					neightborhood[(int) (Math.random() * neightborhood.length - 1)]);
 			listCitizens.add(citizens);
 		}
+	}
 
-		printPeople(listCitizens);
-
-		// create postilions
-		List<JuniorPostilion> listPostelions = new LinkedList();
+	private static void createPostelions(final String[] names,
+			List<JuniorPostilion> listPostelions) {
 		JuniorPostilion postelion;
 		for (int i = 0; i < NUMBER_OF_POSTILIONS; i++) {
 			if (Math.random() > 0.5) {
@@ -53,11 +67,10 @@ public class Main {
 
 			listPostelions.add(postelion);
 		}
+	}
 
-		printPeople(listPostelions);
-
-		// create packets
-		List<IPackage> listPackages = new ArrayList<IPackage>();
+	private static void createPackeges(List listCitizens,
+			List<IPackage> listPackages) {
 		IPackage postPackage;
 		for (int i = 0; i < 80; i++) {
 			if (Math.random() > 0.4) {
@@ -81,7 +94,6 @@ public class Main {
 			}
 			listPackages.add(postPackage);
 		}
-
 	}
 
 	private static void printPeople(List people) {
